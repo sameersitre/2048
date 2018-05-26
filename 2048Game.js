@@ -1,87 +1,94 @@
 
 //2048
+var matrix = [
+    [0, 4, 4, 0],
+    [2, 8, 0, 0],
+    [16, 16, 2, 0],
+    [0, 0, 0, 0]
+];
 
-var matrix = [];
 var score = 0;
 var random = 0;
+var emptyElementsIndexArray = []
 
-// //creating 2d array
-// for (var i = 0; i < 4; i++) {
-//     matrix[i] = [];
-//     for (var j = 0; j < 4; j++) {
-//         matrix[i][j] = 0
-//     }
-// }
-for (var i = 0; i < 4; i++) {
-    matrix[i] = new Array(4);
-}
-
-
-// function randomizer() {
-//     function verify() {
-//         var i = Math.floor(Math.random() * 3)
-//         var j = Math.floor(Math.random() * 3)
-//         if (matrix[i][j] == 0) {
-//             matrix[i][j] = 2;
-//         }
-//         else {
-//             verify();
-//         }
-//     }
-//     var random = 0;
-// }
-//randomizer()
 displayGame();
-//getInputfromUser();
-
-function randomizer() {
-    var i = Math.floor(Math.random() * 4)
-    var j = Math.floor(Math.random() * 4)
-verify();
-    function verify() {
-        if(matrix[i][j]==undefined){
-            matrix[i][j]=2;
-        }
-        else {
-            verify();
+rightShifter();
+displayGame();
+//addTwoinEmptyElements();
+function addTwoinEmptyElements() {
+    //find empty elements and put into variable array
+    for (var i = 0; i < 4; i++) {
+        for (var j = 0; j < 4; j++) {
+            if (matrix[i][j] == 0) {
+                emptyElementsIndexArray.push(i.toString() + j.toString())
+            }
         }
     }
+    console.log(emptyElementsIndexArray);
+    //getting random element from emptyElementsIndexArray
+
+    var x = emptyElementsIndexArray[Math.floor(Math.random() * emptyElementsIndexArray.length)]
+    //now, adding 2 in matrix of random index 
+    matrix[x.charAt(0)][x.charAt(1)] = 2;
+    displayGame();
+
 }
+
 function displayGame() {
-    randomizer()
 
     console.log("**** 2 0 4 8 ****\n\nScore : " + score + "\n\n")
     for (var i = 0; i < 4; i++) {
 
-        console.log(matrix[i][0] + "   " + matrix[i][1] + "   " + matrix[i][2] + "   " + matrix[i][3] + "   \n")
+        console.log(matrix[i][0] + "\t" + matrix[i][1] + "\t" + matrix[i][2] + "\t" + matrix[i][3] + "\t\n")
 
     }
-    getInputfromUser();
 }
 
-function getInputfromUser() {
-    // const readline = require('readline');
 
-    // const rl = readline.createInterface({
-    //   input: process.stdin,
-    //   output: process.stdout
-    // });
-    // const readline = require('readline');
-    // readline.on('line', (input) => {
-    //     console.log(`Received: ${input}`);
-    //   });
-}
 
 function rightShifter() {
 
-    randomizer();//comes in the last
+
+    for (var i = 0; i < 4; i++) {
+        for (var j = 0; j < 4; j++) {
+            if (matrix[i][j] == matrix[i][j + 1]) {
+                //if left & right elements equal, right element multiplied by itself, & left element assigned to 0
+                matrix[i][j + 1] *= 2
+                matrix[i][j] = 0;
+
+                //if right element is 0 then left element is assigned to it and left assigned to 0
+                // if (matrix[i][j + 1] == 0) {
+                //     matrix[i][j + 1] = matrix[i][j]
+                //     matrix[i][j] = 0
+                // }
+
+            }
+        }
+    }
+
+    displayGame();
+
+    for (i = 0; i < 4; i++) {
+        for (j = 3; j >=0 ; j--) {
+            if(matrix[i][j]==0){
+
+            }
+        }
+    }
+    displayGame();
+    // for (var i = 4; i > 0; i--) {
+    //     for (var j = 4; j > 0; j--) {
+    //         if (matrix[i][j] == 0 ) {
+    //             matrix[i][j] = matrix[i][j - 1]
+    //             matrix[i][j - 1] = 0
+    //         }
+    //     }
+    // }
 }
 function leftShifter() {
-    randomizer();
+
 }
 function topShifter() {
-    randomizer();
 }
 function bottomShifter() {
-    randomizer();
 }
