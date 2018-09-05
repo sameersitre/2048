@@ -1,19 +1,55 @@
 
 //2048
 var matrix = [
-    [0, 4, 4, 0],
+    [0, 0, 4, 4],
     [2, 8, 0, 0],
     [16, 16, 2, 0],
     [0, 0, 0, 0]
 ];
-
 var score = 0;
 var random = 0;
 var emptyElementsIndexArray = []
 
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 displayGame();
+rl.question('UP(W) DOWN(S) LEFT(A) RIGHT(D) QUIT(Q)', answer => {
+
+  if(answer==='a') {
+    console.log('Shifted Left', answer);
+  }
+  else if(answer==='s'){
+    console.log('Shifted Down', answer);
+  }
+  else if(answer==='d'){
+    console.log('Shifted Right', answer);
+  }
+  else if(answer==='w'){
+    console.log('Shifted Top', answer);
+  }
+  else if(answer==='q'){
+    console.log('Game Quitted');
+  }
+  else {
+    console.log('Wrong key pressed');
+  }
+
+  rl.close();
+
+});
+function displayGame() {
+
+    console.log("**** 2 0 4 8 ****\n\nScore : " + score + "\n\n")
+    for (var i = 0; i < 4; i++) {
+        console.log(matrix[i][0] + "\t" + matrix[i][1] + "\t" + matrix[i][2] + "\t" + matrix[i][3] + "\t\n")
+    }
+}
+
 rightShifter();
-displayGame();
 //addTwoinEmptyElements();
 function addTwoinEmptyElements() {
     //find empty elements and put into variable array
@@ -31,24 +67,9 @@ function addTwoinEmptyElements() {
     //now, adding 2 in matrix of random index 
     matrix[x.charAt(0)][x.charAt(1)] = 2;
     displayGame();
-
 }
-
-function displayGame() {
-
-    console.log("**** 2 0 4 8 ****\n\nScore : " + score + "\n\n")
-    for (var i = 0; i < 4; i++) {
-
-        console.log(matrix[i][0] + "\t" + matrix[i][1] + "\t" + matrix[i][2] + "\t" + matrix[i][3] + "\t\n")
-
-    }
-}
-
-
 
 function rightShifter() {
-
-
     for (var i = 0; i < 4; i++) {
         for (var j = 0; j < 4; j++) {
             if (matrix[i][j] == matrix[i][j + 1]) {
@@ -61,21 +82,17 @@ function rightShifter() {
                 //     matrix[i][j + 1] = matrix[i][j]
                 //     matrix[i][j] = 0
                 // }
-
             }
         }
     }
-
-    displayGame();
-
+    
     for (i = 0; i < 4; i++) {
         for (j = 3; j >=0 ; j--) {
             if(matrix[i][j]==0){
-
             }
         }
     }
-    displayGame();
+    // displayGame();
     // for (var i = 4; i > 0; i--) {
     //     for (var j = 4; j > 0; j--) {
     //         if (matrix[i][j] == 0 ) {
@@ -85,10 +102,14 @@ function rightShifter() {
     //     }
     // }
 }
-function leftShifter() {
 
+function leftShifter() {
+    console.log('Shifted Left');
 }
 function topShifter() {
+    console.log('Shifted Top');
 }
-function bottomShifter() {
+function downShifter() {
+    console.log('Shifted Down');
+
 }
