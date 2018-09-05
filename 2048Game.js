@@ -1,46 +1,57 @@
 
 //2048
 var matrix = [
-    [0, 0, 4, 4],
+    [0, 4, 4, 0],
     [2, 8, 0, 0],
     [16, 16, 2, 0],
     [0, 0, 0, 0]
 ];
+
 var score = 0;
 var random = 0;
 var emptyElementsIndexArray = []
-
 const readline = require('readline');
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+getInput();
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-displayGame();
-rl.question('UP(W) DOWN(S) LEFT(A) RIGHT(D) QUIT(Q)', answer => {
+function getInput() {
+    
+    displayGame();
+    rl.question('UP(W) DOWN(S) LEFT(A) RIGHT(D) QUIT(Q)', answer => {
+        enteredKey(answer);
+    });
+}
 
-  if(answer==='a') {
-    console.log('Shifted Left', answer);
-  }
-  else if(answer==='s'){
-    console.log('Shifted Down', answer);
-  }
-  else if(answer==='d'){
-    console.log('Shifted Right', answer);
-  }
-  else if(answer==='w'){
-    console.log('Shifted Top', answer);
-  }
-  else if(answer==='q'){
-    console.log('Game Quitted');
-  }
-  else {
-    console.log('Wrong key pressed');
-  }
+function enteredKey(answer) {
+    if (answer === 'a') {
+        console.log('Shifted Left', answer);
+    }
+    else if (answer === 's') {
+        console.log('Shifted Down', answer);
+    }
+    else if (answer === 'd') {
+        console.log('Shifted Right', answer);
+        rightShifter();
 
-  rl.close();
+        getInput();
+    }
+    else if (answer === 'w') {
+        console.log('Shifted Top', answer);
+    }
+    else if (answer === 'q') {
+        console.log('Game Quitted');
+        rl.close();
 
-});
+    }
+    else {
+        console.log('Wrong key pressed');
+        getInput();
+    }
+
+}
 function displayGame() {
 
     console.log("**** 2 0 4 8 ****\n\nScore : " + score + "\n\n")
@@ -49,7 +60,6 @@ function displayGame() {
     }
 }
 
-rightShifter();
 //addTwoinEmptyElements();
 function addTwoinEmptyElements() {
     //find empty elements and put into variable array
@@ -66,7 +76,7 @@ function addTwoinEmptyElements() {
     var x = emptyElementsIndexArray[Math.floor(Math.random() * emptyElementsIndexArray.length)]
     //now, adding 2 in matrix of random index 
     matrix[x.charAt(0)][x.charAt(1)] = 2;
-    displayGame();
+
 }
 
 function rightShifter() {
@@ -85,10 +95,10 @@ function rightShifter() {
             }
         }
     }
-    
+
     for (i = 0; i < 4; i++) {
-        for (j = 3; j >=0 ; j--) {
-            if(matrix[i][j]==0){
+        for (j = 3; j >= 0; j--) {
+            if (matrix[i][j] == 0) {
             }
         }
     }
