@@ -24,7 +24,7 @@ function getInput() {
     rl.question('UP(W) DOWN(S) LEFT(A) RIGHT(D) QUIT(Q)', answer => {
         enteredKey(answer);
     });
-}
+}[]
 
 /* -------------------KEY ENTERED CONDITIONS-------------------- */
 function enteredKey(answer) {
@@ -68,8 +68,9 @@ function displayGame() {
     }
 }
 
-
+/* -----------------ADD 2 IN EMPTY RANDOM ELEMENTS------------------- */
 function addTwoinEmptyElements() {
+
     //find empty elements and put into variable array
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 4; j++) {
@@ -80,7 +81,7 @@ function addTwoinEmptyElements() {
     }
     console.log(emptyElementsArray);
     /* empty array->  emptyElementsArray= ['00', '01', '02', '10', '11', '20', '21', '30', '31', '32', '33' ] */
-    //getting two random element from array emptyElementsArray
+    //getting two random elementS from array emptyElementsArray
   
 
         let x = emptyElementsArray[Math.floor(Math.random() * emptyElementsArray.length)];
@@ -123,8 +124,21 @@ function rightShifter() {
 }
 
 function leftShifter() {
-    console.log('Shifted Left');
+    //adding equal numbers in a row
+    for(let i=0;i<4;i++){
+        for(let j=0;j<4; j++){
+            if(matrix[i][j]===matrix[i][j+1]){
+                matrix[i][j] *=2;
+                matrix[i][j+1]=0;   
+            }
+        }
+    }
+
+    
+
+
 }
+
 function topShifter() {
     console.log('Shifted Top');
 }
