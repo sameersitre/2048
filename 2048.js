@@ -14,19 +14,20 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+var x=0, y=0 ;
 getInput();
 function getInput() {
     displayGame();
-    findEmptyElements();
     console.log(emptyElementsArray);
-    if (emptyElementsArray.length == null) {
-        console.log("GAME OVER!");
+    if (x === undefined || y === undefined) {
+        console.log("Game Over!!!");
         rl.close();
+        
     }
-    else {
-        rl.question('UP(W) DOWN(S) LEFT(A) RIGHT(D) QUIT(Q)', answer => {
-            enteredKey(answer);
-        });
+    else  {
+    rl.question(x+" "+y+'\nUP(W) DOWN(S) LEFT(A) RIGHT(D) QUIT(Q)', answer => {
+        enteredKey(answer);
+    });
     }
 }
 
@@ -46,11 +47,12 @@ function enteredKey(answer) {
     /* -----RIGHT---- */
     else if (answer === 'd') {
         console.log('Shifted Right', answer);
-        rightShifter();
-        findEmptyElements();
 
+        rightShifter();
+        sumOfEqualElements();
+        findEmptyElements();
         insert2inEmptyElements();
-        console.clear();
+       // console.clear();
         getInput();
     }
     else if (answer === 'w') {
@@ -92,17 +94,6 @@ function rightShifter() {
         }
     }
 }
-/* -----------FIND EMPTY ELEMENTS----------- */
-function findEmptyElements() {
-    //find empty elements 
-    for (let i = 0; i < 4; i++) {
-        for (let j = 0; j < 4; j++) {
-            if (matrix[i][j] == 0) {
-                emptyElementsArray.push(i.toString() + j.toString())
-            }
-        }
-    }
-}
 
 function sumOfEqualElements() {
     for (let i = 0; i < 4; i++) {
@@ -117,23 +108,42 @@ function sumOfEqualElements() {
 
 }
 
-/* -----------------ADD 2 IN EMPTY RANDOM ELEMENTS------------------- */
-function insert2inEmptyElements() {
-    //emptyElementsArray = [];
-
-    /* empty array->  emptyElementsArray= ['00', '01', '02', '10', '11', '20', '21', '30', '31', '32', '33' ] */
-    //getting two random elementS from array emptyElementsArray
-    let x = emptyElementsArray[Math.floor(Math.random() * emptyElementsArray.length)];
-    let y = emptyElementsArray[Math.floor(Math.random() * emptyElementsArray.length)];
-    console.log(x +" "+ y)
-    //now, adding 2 in matrix of random index  
-    matrix[x.charAt(0)][x.charAt(1)] = 2;
-    matrix[y.charAt(0)][y.charAt(1)] = 2;
-
+/* -----------FIND EMPTY ELEMENTS----------- */
+function findEmptyElements() {
+    //find empty elements 
+    emptyElementsArray = [];
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            if (matrix[i][j] == 0) {
+                emptyElementsArray.push(i.toString() + j.toString())
+            }
+        }
+    }
 }
 
 
+/* -----------------ADD 2 IN EMPTY RANDOM ELEMENTS------------------- */
+function insert2inEmptyElements() {
+    //emptyElementsArray = [];
+    /* empty array->  emptyElementsArray= ['00', '01', '02', '10', '11', '20', '21', '30', '31', '32', '33' ] */
+    //getting two random elementS from array emptyElementsArray
 
+   x = emptyElementsArray[Math.floor(Math.random() * emptyElementsArray.length)];
+    y = emptyElementsArray[Math.floor(Math.random() * emptyElementsArray.length)];
+    //now, adding 2 in matrix of random index  
+    try{
+          matrix[x.charAt(0)][x.charAt(1)] = 2;
+        matrix[y.charAt(0)][y.charAt(1)] = 2;
+    }
+    catch(err){
+        console.log("Game Over!!!")
+    }
+      
+    
+
+
+
+}
 
 function leftShifter() {
     //adding equal numbers in a row
@@ -145,9 +155,6 @@ function leftShifter() {
             }
         }
     }
-
-
-
 
 }
 
