@@ -49,9 +49,9 @@ function enteredKey(answer) {
         console.log('Shifted Right', answer);
 
         rightShifter();
-        sumOfEqualElements();
+        rowEqualElementsSum();
         findEmptyElements();
-        insert2inEmptyElements();
+        randomInsertTwo();
        // console.clear();
         getInput();
     }
@@ -81,7 +81,7 @@ function displayGame() {
 /* ------------------- shift right-------------------- */
 function rightShifter() {
 
-
+//extra k for the loop bcoz all 0's in row should be shifted to the left
     //SHIFT ZEROES IN THE LEFT
     for (let i = 0; i < 4; i++) {
         for (let k = 0; k < 4; k++) {
@@ -94,8 +94,7 @@ function rightShifter() {
         }
     }
 }
-
-function sumOfEqualElements() {
+function rowEqualElementsSum() {
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 4; j++) {
             if (matrix[i][j] == matrix[i][j + 1]) {
@@ -123,7 +122,7 @@ function findEmptyElements() {
 
 
 /* -----------------ADD 2 IN EMPTY RANDOM ELEMENTS------------------- */
-function insert2inEmptyElements() {
+function randomInsertTwo() {
     //emptyElementsArray = [];
     /* empty array->  emptyElementsArray= ['00', '01', '02', '10', '11', '20', '21', '30', '31', '32', '33' ] */
     //getting two random elementS from array emptyElementsArray
@@ -136,7 +135,7 @@ function insert2inEmptyElements() {
         matrix[y.charAt(0)][y.charAt(1)] = 2;
     }
     catch(err){
-        console.log("Game Over!!!")
+       
     }
       
     
