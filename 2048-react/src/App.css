@@ -26,3 +26,59 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+@keyframes slide {
+  0% {
+    left: 0;
+  }
+ 
+  100% {
+    left: 200px;
+  }
+}
+.stage {
+  background: #eaeaed;
+  border-radius: 6px;
+  height: 100px;
+  position: relative;
+  min-width: 538px;
+}
+.stage:hover .ball {
+  animation-name: slide;
+  animation-duration: 0.4s;
+  
+}
+.ball {
+  width: 50pxl;
+  background: #2db34a;
+  height: 50px;
+  position: absolute;
+  width: 50px;
+}
+
+.object {
+  position: absolute;
+}
+.van {
+  top: 45%;
+  left: 44%;
+}
+#axis:hover .move-right{
+  transform: translate(350px,0);
+  -webkit-transform: translate(350px,0); /** Chrome & Safari **/
+ 
+}
+
+.object {
+  position: absolute;
+  transition: all 2s ease-in-out;
+  -webkit-transition: all 2s ease-in-out; /** Chrome & Safari **/
+}
+
+
+.box {
+  width: 100px;
+  height: 100px;
+  background: #ff1c68;
+  transform-origin: 50% 50%;
+}
