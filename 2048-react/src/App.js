@@ -4,7 +4,17 @@ import './App.css';
 import Card from './Card.js';
 
 class App extends Component {
-
+constructor(props){
+  super(props);
+  this.state={
+    matrix:[
+      [0,2,0,4],
+      [8,0,16,2],
+      [0,0,2,4],
+      [16,16,2,0]
+    ]
+  }
+}
   render() {
     
     return (
@@ -17,11 +27,9 @@ class App extends Component {
           <figure class="ball"></figure>
         </div>
 
-        <div id="axis" class="one">
-          <img class="object van move-right" src="images/van-to-right.png" />
-        </div>
-<div>
-          <Card/>
+     
+<div className='container'>
+          <Card />
 
 </div>
       </div>

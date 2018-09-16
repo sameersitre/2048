@@ -128,11 +128,9 @@ function randomInsertTwo() {
     //getting two random elementS from array emptyElementsArray
 
    x = emptyElementsArray[Math.floor(Math.random() * emptyElementsArray.length)];
-    y = emptyElementsArray[Math.floor(Math.random() * emptyElementsArray.length)];
     //now, adding 2 in matrix of random index  
     try{
           matrix[x.charAt(0)][x.charAt(1)] = 2;
-        matrix[y.charAt(0)][y.charAt(1)] = 2;
     }
     catch(err){
        
