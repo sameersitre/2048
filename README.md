@@ -2,7 +2,7 @@
 2048.js file is the game that can be played in CLI.
 
 
-the sourcecode in react is inside 2048-react folder.
+The sourcecode in react is inside `2048-react` folder.
 
 ## To run in CLI:
 `node 2048.js`
