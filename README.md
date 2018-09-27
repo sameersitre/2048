@@ -1,4 +1,4 @@
-# 2048 in CLI and React
+# 2048 in CLI and React(TBC...)
 2048.js file is the game that can be played in CLI.
 
 
